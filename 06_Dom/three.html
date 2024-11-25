@@ -1,0 +1,35 @@
+<!-- // yaha ham sikhege like ham is childnodes ko programatically kese create karte he  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Jay</title>
+</head>
+<body style="background-color:black; color: aliceblue;">
+    
+</body>
+<script>
+    const div = document.createElement('div')
+    div.className = "main"
+    div.id =Math.round((Math.random() * 10 + 1))
+
+    // now ye to predfined chixeing he agar apne ke div banaya apne usko set karavana ho to vo nam ka to kese karayge 
+    div.setAttribute("title","generated title")
+    div.style.backgroundColor = "green"
+    div.style.padding = "12px"
+    
+    console.log(div);
+
+    // now ye saab chizein sirf memortyy me show ho rahi he like in the log hamare page pe nai show ho rahi to hame usko page pe attach bhi karna padega to ye ham kese karege 
+    // but hamare pass ek por xhix he like 
+    // div.innerText = "jay" but this is not good liek kuch log bologe ye hi method lo niche vala create textnode ye saab kyu karna he 
+
+    // vese dono method sagi hi he aap dono use karo problem nai he 
+
+    const addText = document.createTextNode("Jay")
+    div.appendChild(addText);
+    document.body.appendChild(div); // so this is how we attached 
+</script>
+</html>

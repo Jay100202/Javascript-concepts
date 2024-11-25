@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async</title>
+</head>
+<body>
+    <h1>Jay or Javascript</h1>
+    <button id = "start">Start</button>
+    <button id = "stop">Stop</button>
+</body>
+<script>
+    //  now ham baat karege yaha setInterval ki 
+    //  same like setTimeout ki tarah ye bhi handle or ek time mangta he but iska jo working he vo alag he
+    // setInterval(() => {
+    //     console.log('jay' , Date.now())
+    // }, 1000);
+    // bnow so iska matlab ye he  ki ye like apne 1 sec interval diya har ek seconf pe apko ye log milta jayuga 
+    
+    // const sayJay = () =>{
+    //     console.log("sayjay")
+    // }
+
+    // setInterval(sayJay,1000); // iss tarah se bhi apana function ka refernce leke isko run kar sakte he 
+    
+    // const sayJay1 = (str) =>{
+    //     console.log(str,Date.now());
+    // }
+
+    // setInterval(sayJay1,1000,"hii") // so ye ese bhi apan parameters me paas kar sakte he 
+
+    // now ye chale hi ja raha he to isko bhi rokne ka koi tarika hoga to yess 
+
+    const sayJay2 = (str) =>{
+        console.log(str,Date.now());
+    }
+
+    const clear2 = setInterval(sayJay2,1000,"hii23")
+    clearInterval(clear2)
+
+
+    // now aab ham esa karega like ye jo start button he jab ham uspe click karege to like print hona start hojaye uspe stop karu to bandh hojaye 
+
+    let intervalHandle; // Reference to hold the setInterval
+
+document.querySelector("#start").addEventListener("click", () => {
+    intervalHandle = setInterval(() => {
+        console.log("Jay3",Date.now());
+    }, 1000);
+});
+
+document.querySelector("#stop").addEventListener("click", () => {
+    clearInterval(intervalHandle); // Use the handle to stop the interval
+});
+
+// so now go to stackbitz project 6 hame karna he 5 bhi 
+
+// so this is all about async so like hamne dekha he setimeput , intervals hand all but he ye part asynchronous ka hi
+// kyuki hamara jo main thread or event jo he block nai ho raha he 
+// zaruri nai ki async ka matlab hamesha web pe hi request behjo like asynchrounous jabvascript ke andar hi he 
+// but esa nai he javascript asynchronous hi he like usko bnana na padta he asynchronous like kuch api ko use karke vo asynvhrnouus bani he 
+// jo default javascript ka engone he vo asynchonous nai he but jo complete javascript ka engone he vo asynchronous he 
+    
+
+</script>
+</html>

@@ -1,0 +1,57 @@
+<!-- // edit and remove in DOM elements  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>DOM | Jay</title>
+</head>
+
+<body style="background-color:black; color: aliceblue;">
+
+   <ul class="language">
+      <li>Javascript</li>
+   </ul>
+
+</body>
+<script>
+   /* now hame like li add karni he to like ese abhi javascript he future me ruby ,  python isbaar ham karege with function */
+   function Addlist(langName) {
+      const li = document.createElement('li')
+      li.innerHTML = `${langName}`
+      document.querySelector(".language").appendChild(li)
+   }
+   Addlist("python")
+   Addlist("TypeScript")
+
+   // aab yaha ek problem he like hamare me to pehle se abhi ek hi list item thi like javascript manlo 1000 hoti to like usko pura tree traverse karna padta and then fir appendchild ko dalta 
+   // to jab aap innerHTML likhte ho that means u r traversing a whole tree to ese haarbar yahi tree taraversla karna padta to lets optimize this 
+
+   function addOptim(langName) {
+      const li = document.createElement("li")
+      li.appendChild(document.createTextNode(langName))
+      document.querySelector(".language").appendChild(li)
+   }
+
+   // edit
+   const secondlang = document.querySelector("li:nth-child(2)")
+   //    secondlang.innerHTML = "Mojo"
+   const newLi = document.createElement("li");
+   newLi.textContent = "Mojo"
+   secondlang.replaceWith(newLi);
+
+   // edit
+
+   const firstlang = document.querySelector("li:nth-child(1)")
+   firstlang.outerHTML = "<li>Typescript</li>"
+
+   // remove 
+   const lastlang = document.querySelector("li:nth-child(3)")
+   lastlang.remove()
+
+   // stackblitez for the project 
+
+</script>
+
+</html>

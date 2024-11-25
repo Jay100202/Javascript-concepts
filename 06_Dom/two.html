@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Jay</title>
+</head>
+
+<body style="background-color:black; color: aliceblue;">
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+<script>
+    const parent = document.querySelector(".parent");
+    console.log(parent);
+    console.log(parent.children); // html collection 
+
+
+
+    // HTMLCollection(4) [div.day, div.day, div.day, div.day]
+    // now hame loop lagake access karna ho to each children ko to kese karege 
+    // for loop to chalega hi so 
+
+    for (let index = 0; index < parent.children.length; index++) {
+        const element = parent.children[index].innerHTML;
+        console.log(element);
+    }
+
+    parent.children[1].style.color = "orange";
+
+    // now hamare pass like ye parent ke andar sirf children ki properties nai hoti he like 
+    // iske pass ek or chiz hotu he like first element child
+    console.log(parent.firstElementChild); // div class monday
+    console.log(parent.lastElementChild);
+
+    // now yaha ham ja rahe he like parent se child to esa zaruri nai he ki ham parent se child hi ja sakte he 
+    // ham child se parent bhi ja sakte he 
+
+    const dayOne = document.querySelector(".day");
+    console.log(dayOne);
+    // now ye dayone ek variable me rakha hi he aab mujhe uske parent me jana he 
+    // to like baar baar ye queryselector use karna padega this queryselector itna asan nai he yer baar baar ye puri tree me traverse karega fir dekhega like lamba procedure he 
+    // to if hame is child ke parent pe hi jana he to usko pura kyu traverse karaye query selector ke through
+
+    console.log(dayOne.parentElement); // so this is how we done it 
+    // now ham sibling pe bhi ja sakte he like child ka sibling
+    console.log(dayOne.nextElementSibling);
+
+    // now hame ye bhi jana na he ki jo parent he uske kitne child nodes he to uske loye hamare paas he 
+    console.log("Nodes:", parent.childNodes);  //NodeList(9) [text, div.day, text, div.day, text, div.day, text, div.day, text]
+
+    // to hame mili 9 nodes list like ham soch rahe hoge isme monday ,tuesday vo saab hoga to isme esa nai he 
+    // nodelist ya childNodes jo he vo ek complex structure hota he
+    // like apne likha he ye
+    // <div class="parent">
+    //     <div class="day">Monday</div>
+    //     <div class="day">Tuesday</div>
+    //     <div class="day">Wednesday</div>
+    //     <div class="day">Thursday</div>
+    // </div>
+
+    // isme like parent> khatam hoke apoe naye line me likhna chalu kiya he to vo bhi ek node he
+    // apne monday ke baad tuesday naye line me likha he to jo break hua he naya line me jane ke liye vo bhi ek node he
+    // fir aggar aap zyada line break de rahe ho to vo couht nai hoga like parent me ke baad 2 line break de diya this will not count isme count hoga to like 1 hi line break ye html me hota hi he esa
+    // but if apne comment karke badme likha to apka Nodelist badh jayga 
+</script>
+
+</html>

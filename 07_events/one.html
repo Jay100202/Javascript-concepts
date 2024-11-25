@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML events</title>
+</head>
+
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div>
+        <ul id="images">
+            <li><img width="200px" id="photoshop"
+                    src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt="photoshop"></li>
+            <li><img width="200px" id="japan"
+                    src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><img width="200px" id="river"
+                    src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><img width="200px" id="owl"
+                    src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><img width="200px" id="prayer"
+                    src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    // javascript ke andar jitne bhi events hote he vo sequentially hi run hote he
+    // to ye events kya hote he like ye events like apko kisi activity pe invoke hote he
+    // like apne mouse hilaya , keyborard pe kuch press kiya ya koi winfow oe kuch click kiya  
+
+    // now mene koi updar photo ko click kiya and mujhe ek alert show karana he like this stuff is clicked karke
+
+    // document.getElementById("owl").onclick = function (){
+    //     alert("owl clicked")
+    // } // so this is the one method 
+    //so isme problem kya he basically jab id pe onclick evenyt lagarahe he to onlclick event pe kuch problem ho aakti he 
+    // to aplo boht sari problem ho sakti he to apko event listenere use karne chaoye 
+    // kyuki like eventlistener apko sirf onclick ki functionality nai propagtion ki ability bhi dete he
+    // so ye method jo hamne use ki vo thoda less feture deta he 
+
+
+    //so ye jo eventlistener he vo boht kuch kar sakta he like vo detect kar sakta he mouse ka hover ya keyboard pe apne kuch dabaya , drag and drop 
+    // so u can see more events on mdn
+    // ham zyada tar ye method use karege
+    document.getElementById("owl").addEventListener("click", () => {
+        console.log()
+        alert("owl clicked")
+    }, false) // so ye false kyu likha jata he like third paramater ye interview me puchte he zyada so like na likho to bhi by default false hi hota he ye isliye k[likhte he beca kahi baar aplication hoti he jo false or true likha bina aage jati hi nai]
+
+
+    // ek or method he like 
+    //attachevent()
+    //jQuery - on ye bhi that pehle ke time me on katrke hota tha jquery me hamare 
+
+    document.getElementById("owl").addEventListener("click", (e) => {
+        console.log(e); // yaha pe hame ye e bhi milta he like events milte he 
+        // to apko kya kya events milte to basically apko mile he browser ke events or enviornment ke events to basically 
+        // environment ke events ka matkab like apka mouse konse position pe tha and all 
+        alert("owl clicked")
+    })
+
+    // so this are all things we have to look for interview type 
+    //type, timestamp,deafultprevented
+    // target , toElement, sourceElement, currentTraget , 
+    // client position (x,y), screenX, screenY
+    // altkey , ctrlkey, shoftkey, keycode
+
+
+    // so now what is this event propogation jo hamne upar baat ki thi
+    // so isko samajne ke liye apko samajna padega true or false ke bare me 
+    document.getElementById("owl").addEventListener("click", (e) => {
+        console.log(e);
+        alert("owl clicked")
+    }, false)
+
+    // to jab bhi aap idahr true or false dono likh dete here to ese jab aap events ka log dekhoge to dekhoge ki
+    // dono same hi zhiz ayga log me apko difference nai pata chalega so ye he kya 
+    // to dekhye event propogation ka 2 context hota he basically 1 is event bubbling and another is event capturing 
+    // so market me use abhi ho raha he default  se vo apka false he vo he apko default bubbling
+    // so kuch scenerio me apko eevent capturing ka bhi use karna padd sakta he
+
+    // so lets see with the example so ham isbaar images(ul ki id) or owl(li ki id) jo he hamre html me unko use karege 
+    document.getElementById("images").addEventListener("click", (e) => {
+        console.log("click inside the ul")
+    }, false)
+
+    document.getElementById("owl").addEventListener("click", (e) => {
+        console.log("owl clicked")
+    }, false)
+
+    // now see hamne ye code same likha he like ek me images he or ek me owl he
+    //so like jab bhi aap apne owl pe click kar rahe he to vo bhi ap ke ul ke andar hi he to apke ul vala bhi activate hoga 
+    // kyuki like ul ke andar li he and li ke andar images he 
+    // so like aap kahi pe bhi ese click karoge to apka ul hot hoga matkab images vala to vonsole ayga clicked inside the ul 
+    // pr jab aap koi image pe click karoge like owl pe to ayga owl clicked and then clicked inside the ul beacuse vo bhi hamare ul ka hi part he 
+
+    // so sara ka sara event propogation ka khel kya he bubbling up,
+    // so ye bubble kya hota he niche se leke upar tak jana 
+
+    // now yaha to hamne false kia tha mena sbubble vala aab ham dekhege truwe vala means capturing
+
+    document.getElementById("images").addEventListener("click", (e) => {
+        console.log("click inside the ul")
+    }, true)
+
+    document.getElementById("owl").addEventListener("click", (e) => {
+        console.log("owl clicked")
+    }, true)
+
+
+    // so yaha pe jab aap owl pr click karoge to ayga like apne click indide the ul and then owl clicked ye log ayga meand upar se leke niche tak jana
+
+    // so ye apke use case ke upar he ke apko konsa capturing use karna he ki bubbling use karna he
+
+    //  now apne react me ayga like bubble use kar rahe like apne ko niche se upar nai jana like vohi element pe stick rehna he niche ke to hamare paas method he like e.stop propogation
+    document.getElementById("owl").addEventListener("click", (e) => {
+        console.log("owl clicked")
+        e.stopPropagation()
+    }, true)
+    // to isko use karjke ham updar ke element me nai ja payga bubble me 
+
+    // now lets learn about e.preventdefault so iske liye ham google ki jo link he uska example lege
+    // so abhi hamri google ki link ka behaviour he like uspe click kare to vo like hame google.com pe le ja raha he 
+    // to aab ham ye nai chahte to uske loye ham karege 
+
+    document.getElementById("google").addEventListener("click", (e) => {
+        e.preventDefault();
+    })
+
+
+    // so small project
+    // tp hame kya katrna he like jitne bhi li pe me click karu to vo gayab hojaye 
+
+    document.querySelector("#images").addEventListener("click", (e) => {
+        console.log(e);
+        // so yaha event ke andar ek or chiz hoti he like e.target 
+        // so ye kehta he ki like apko koni jagah se ye ebvent araha he 
+        console.log(e.target);
+        // nowe hame remove karna he to like hame pura ka pura li hi remove karna padega to uske liye like hmare paas hota he
+        console.log(e.target.parentNode);
+
+        if (e.target.tagName === "IMG") {
+            let removeIt = e.target.parentNode;
+            removeIt.remove(); // this is hwo we remove it 
+        }
+
+
+        // ek or trarika he 
+        // removeIt.parentNode.removeChild(removeIt);
+    })
+</script>
+
+</html>
